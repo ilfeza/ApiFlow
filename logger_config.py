@@ -6,6 +6,9 @@ log_dir = Path(__file__).parent
 
 LOG_FILE = log_dir / "py_log.log"
 
+if not LOG_FILE.exists():
+    LOG_FILE.touch()
+
 logging.basicConfig(
     level=logging.INFO,
     filename=LOG_FILE,
