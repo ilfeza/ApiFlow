@@ -1,5 +1,6 @@
 .idea
 __pycache__
 *.log
-touch tests/test_cases_tests/.gitkeep
-touch test_cases/.gitkeep
+touch backend/tests/test_cases_tests/.gitkeep
+touch test_cases/body/.gitkeep
+touch test_cases/headers/.gitkeep

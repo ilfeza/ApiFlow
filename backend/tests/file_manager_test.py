@@ -1,5 +1,5 @@
 import pytest
-from app.services.file_manager import FileManager
+from backend.app.services.file_manager import FileManager
 
 @pytest.fixture(scope="function", autouse=True)
 def file_manager():

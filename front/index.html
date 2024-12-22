@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Test Runner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <button id="runAll">Run All Tests</button>
+    <button id="runSelected">Run Selected</button>
+    <span id="testStatus"></span>
+    <div class="progress-bar">
+      <div class="progress-bar-fill"></div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="requests-panel">
+      <button class="new-file-btn">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+        New Test File
+      </button>
+
+      <div class="folder">
+        <div class="folder-name">
+          <svg viewBox="0 0 16 16">
+            <path d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3H7.5L6.5 1.75A1.75 1.75 0 005 1H1.75z"></path>
+          </svg>
+          Users API
+        </div>
+        <div class="file active">
+          <span class="method-badge method-get">GET</span>
+          users.test.js
+        </div>
+        <div class="file">
+          <span class="method-badge method-post">POST</span>
+          create-user.test.js
+        </div>
+      </div>
+
+      <div class="folder">
+        <div class="folder-name">
+          <svg viewBox="0 0 16 16">
+            <path d="M1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25v-8.5A1.75 1.75 0 0014.25 3H7.5L6.5 1.75A1.75 1.75 0 005 1H1.75z"></path>
+          </svg>
+          Products API
+        </div>
+        <div class="file">
+          <span class="method-badge method-put">PUT</span>
+          update-product.test.js
+        </div>
+        <div class="file">
+          <span class="method-badge method-delete">DELETE</span>
+          delete-product.test.js
+        </div>
+      </div>
+    </div>
+
+    <div class="request-config">
+      <h3>Request Configuration</h3>
+
+      <label>Method</label>
+      <select id="method">
+        <option>GET</option>
+        <option>POST</option>
+        <option>PUT</option>
+        <option>DELETE</option>
+      </select>
+
+      <label>URL</label>
+      <input type="text" id="url" value="https://api.example.com/users">
+
+      <label>Headers</label>
+      <textarea id="headers">{
+  "Content-Type": "application/json",
+  "Authorization": "Bearer token123"
+}</textarea>
+
+      <label>Body</label>
+      <textarea id="body">{
+  "name": "John Doe",
+  "email": "john@example.com"
+}</textarea>
+
+      <button id="sendRequest">Send Request</button>
+    </div>
+
+    <div class="response-panel">
+      <h3>Response</h3>
+
+      <div class="status status-success">200 OK</div>
+
+      <div class="response-container">
+{
+  "success": true,
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com"
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane@example.com"
+      }
+    ]
+  }
+}
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

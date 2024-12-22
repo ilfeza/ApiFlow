@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from app.db.database import Base
+from backend.app.db.database import Base
 from sqlalchemy.ext.declarative import declarative_base
 import json
 from datetime import datetime

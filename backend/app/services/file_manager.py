@@ -1,8 +1,9 @@
 from pathlib import Path
 import json
-from logger_config import logger
+from backend.logger_config import logger
 
 logger.info("Logging initialized")
+
 
 class FileManager:
     def __init__(self, base_dir: str = "test_cases"):
@@ -50,4 +51,3 @@ class FileManager:
         files = [f.name for f in self.base_dir.glob("*.json")]
         logger.info(f"Files listed: {files}")
         return files
-
