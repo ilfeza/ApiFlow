@@ -1,7 +1,4 @@
 import requests
-import os
-from datetime import datetime
-
 
 def send_request(url, method='GET', data=None, headers=None):
     try:
