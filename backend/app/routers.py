@@ -1,17 +1,23 @@
 from fastapi import APIRouter
-from models import TestUpdate
+from models import *
+from crud import *
+
 
 router = APIRouter()
 
-@router.get("/")
+# все id и name тестов
+@router.get("/bu", response_model=list[TestName])
 def all_tests():
-    # id и название
+    tests = get_all_name()
+    return [TestName(id=test[0], name_test=test[1]) for test in tests]
+
+"""
 
 @router.get("/{test_id}")
 def test_details(test_id: int):
     # id url method header body
 
-@router.post("/start/{test_id}")
+@router.post("/tests/start/{test_id}")
 def start_test(test_id: int):
     # respon
 
@@ -25,7 +31,8 @@ def get_user(test_id: int, test_update: TestUpdate):
     # сохраняется и вохвращается инфа о тесте
 
 
-@router.get("/start")
+@router.get("/tests/start_status")
 def get_user():
     # запускаются тесты и возвращается какие прошли а какие нет
 
+"""
