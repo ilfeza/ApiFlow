@@ -2,7 +2,7 @@ import pytest
 import requests
 import responses
 
-from backend.app import request_sender
+from backend.app.logic import request_sender
 from backend.app.services.json_loader import load_json_data
 import json
 

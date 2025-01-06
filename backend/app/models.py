@@ -1,6 +1,28 @@
+from typing import Optional, Dict
+
+from pydantic import BaseModel
+
+
+class TestUpdate(BaseModel):
+    name: Optional[str] = None
+    url: Optional[str] = None
+    method: Optional[int] = None
+    headers: Optional[Dict[str, str]] = None
+    body: Optional[Dict[str, str]] = None
+
+
+class TestStart(BaseModel):
+    id: int
+    name: str
+    status: int
+
+
+"""
 from sqlalchemy import Column, Integer, String, Boolean, Text, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
+
 from sqlalchemy.sql import func
+
 from backend.app.db.database import Base
 from sqlalchemy.ext.declarative import declarative_base
 import json
@@ -34,7 +56,7 @@ class TestResult(Base):
     test = relationship("Test", back_populates="results")
 
 
-""""
+
 engine = create_engine('sqlite:///apiflow.db')  # Можно заменить на любой другой тип базы данных
 
 Base.metadata.create_all(engine)  # Создание всех таблиц в базе данных
@@ -42,4 +64,5 @@ Base.metadata.create_all(engine)  # Создание всех таблиц в б
 # Создание сессии для работы с БД
 Session = sessionmaker(bind=engine)
 session = Session()
+
 """
