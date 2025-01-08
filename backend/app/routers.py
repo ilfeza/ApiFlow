@@ -57,16 +57,9 @@ def update_test(test_id: int, test_update: TestUpdate):
 
 
 
+
+
 """
-
-
-@router.post("/tests/start/{test_id}")
-def start_test(test_id: int):
-    id передается в logic
-    в logic берется инфа из бд
-    тест запускается
-    сюда возвращается ответ и ответ записывается в бд
-    # respon
 
 
 

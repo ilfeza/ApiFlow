@@ -10,6 +10,13 @@ class TestUpdate(BaseModel):
     headers: Optional[Dict[str, str]] = None
     body: Optional[Dict[str, str]] = None
 
+class Testnfo(BaseModel):
+    name: Optional[str] = None
+    url: Optional[str] = None
+    method: Optional[str] = None
+    headers: Optional[Dict[str, str]] = None
+    body: Optional[Dict[str, str]] = None
+
 
 class TestStart(BaseModel):
     id: int

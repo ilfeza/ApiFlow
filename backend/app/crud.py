@@ -1,7 +1,9 @@
 import json
 
-from db import db_models
-print(db_models.session)
+from backend.app.db import db_models
+
+
+
 
 # Выбрать все тесты
 def get_all_tests():
@@ -21,6 +23,8 @@ def get_test_by_id(test_id):
     with db_models.session() as session:
         test = session.query(db_models.Test).filter(db_models.Test.id == test_id).first()
         return test
+
+print(get_test_by_id(3).header)
 
 # Создать тест по названию
 def create_test(name_test):

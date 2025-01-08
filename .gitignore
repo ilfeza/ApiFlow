@@ -5,3 +5,4 @@ touch backend/tests/test_cases_tests/.gitkeep
 touch test_cases/body/.gitkeep
 touch test_cases/headers/.gitkeep
 backend/app/db/apiFlow.db
+test_cases

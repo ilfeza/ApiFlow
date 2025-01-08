@@ -1,6 +1,23 @@
 import requests
 
-def send_request(url, method='GET', data=None, headers=None):
+from backend.app import crud
+
+
+def send_request(test_id: int):
+    description = crud.get_test_by_id(test_id)
+
+    result = start_test(description.url,
+                        description.method,
+                        description.header,
+                        description.body)
+
+    print(result)
+    return result
+
+
+
+
+def start_test(url, method='GET', data=None, headers=None):
     try:
         if method.upper() == 'GET':
             response = requests.get(url, headers=headers)
@@ -24,3 +41,5 @@ def send_request(url, method='GET', data=None, headers=None):
     except requests.RequestException as e:
         print(f"Error sending request: {e}")
         return None
+
+print(send_request(3))
