@@ -1,3 +1,5 @@
+import json
+
 from db import db_models
 print(db_models.session)
 
@@ -7,7 +9,6 @@ def get_all_tests():
         tests = session.query(db_models.Test).all()
         return tests
 
-print(get_all_tests())
 # Выбрать все id и name
 def get_all_name():
     with db_models.session() as session:
@@ -20,7 +21,6 @@ def get_test_by_id(test_id):
     with db_models.session() as session:
         test = session.query(db_models.Test).filter(db_models.Test.id == test_id).first()
         return test
-
 
 # Создать тест по названию
 def create_test(name_test):
@@ -35,6 +35,11 @@ def create_test(name_test):
 def update_test_by_id(test_id, name_test=None, url=None, method=None, header=None, body=None):
     with db_models.session() as session:
         test = session.query(db_models.Test).filter(db_models.Test.id == test_id).first()
+
+        if isinstance(header, str):
+            header = json.loads(header)
+        if isinstance(body, str):
+            body = json.loads(body)
 
         if test:
             if name_test:

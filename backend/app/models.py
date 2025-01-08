@@ -6,7 +6,7 @@ from pydantic import BaseModel
 class TestUpdate(BaseModel):
     name: Optional[str] = None
     url: Optional[str] = None
-    method: Optional[int] = None
+    method: Optional[str] = None
     headers: Optional[Dict[str, str]] = None
     body: Optional[Dict[str, str]] = None
 
