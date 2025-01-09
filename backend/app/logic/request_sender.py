@@ -1,10 +1,8 @@
 import requests
-
-from backend.app import crud
-
+from backend.app.crud import *  # Используем импорт функций из crud.py
 
 def send_request(test_id: int):
-    description = crud.get_test_by_id(test_id)
+    description = get_test_by_id(test_id)
 
     result = start_test(description.url,
                         description.method,
@@ -13,9 +11,6 @@ def send_request(test_id: int):
 
     print(result)
     return result
-
-
-
 
 def start_test(url, method='GET', data=None, headers=None):
     try:

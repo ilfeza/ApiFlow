@@ -5,6 +5,14 @@ import logging
 
 router = APIRouter()
 
+import json
+from logic.request_sender import send_request
+
+response = send_request(3)
+
+# Выводим весь объект response в формате JSON
+print(json.dumps(response.json(), indent=4))
+
 
 # все id и name тестов
 @router.get("/")
