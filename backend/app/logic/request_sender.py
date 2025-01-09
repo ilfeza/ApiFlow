@@ -1,22 +1,6 @@
 import requests
 
-
-from backend.app.crud import *
-
-
-def send_request(test_id: int):
-    description = get_test_by_id(test_id)
-
-    result = start_test(description.url,
-                        description.method,
-                        description.header,
-                        description.body)
-
-    print(result)
-    return result
-
-
-
+from backend.app.crud import get_test_by_id, create_result
 
 
 def start_test(url, method='GET', data=None, headers=None):
@@ -38,8 +22,33 @@ def start_test(url, method='GET', data=None, headers=None):
         else:
             raise ValueError(f"Unsupported HTTP method: {method}")
 
-        return response
+        # Выводим статус и JSON-ответ
+        status_code = response.status_code
+        try:
+            json_response = response.json()
+        except ValueError:
+            json_response = None
+
+        return status_code, json_response
 
     except requests.RequestException as e:
         print(f"Error sending request: {e}")
-        return None
+        return None, None
+
+
+def send_request(test_id: int):
+    description = get_test_by_id(test_id)
+    status_code, json_response = start_test(description.url,
+                                            description.method,
+                                            description.header,
+                                            description.body)
+
+    # Возвращаем результат в формате JSON
+    result = {
+        'status': status_code,
+        'result': json_response
+    }
+
+    # Здесь возможно нужно просто вернуть результат или использовать его
+    create_result(test_id, status_code, json_response)
+    return result

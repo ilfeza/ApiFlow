@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from routers import router
+from backend.app.routers import router
+print(router)
+
 
 app = FastAPI(title="Приложение для тестирования API")
 

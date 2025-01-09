@@ -19,7 +19,8 @@ class TestResult(Base):
     status = Column(String, nullable=False)
     execution_log = Column(JSON, nullable=True)
 
-DATABASE_URL = "sqlite:///apiFlow.db"
+DATABASE_URL = "sqlite:///backend/app/apiFlow.db"
+
 engine = create_engine(DATABASE_URL, echo=True)
 
 session = sessionmaker(engine)

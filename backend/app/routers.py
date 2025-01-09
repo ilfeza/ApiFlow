@@ -1,25 +1,23 @@
-from fastapi import APIRouter, HTTPException
-from models import *
-from crud import *
+from fastapi import APIRouter
+
+from backend.app.crud import *
 import logging
+
+from backend.app.logic.request_sender import send_request
+from backend.app.models import TestStart, TestName, TestUpdate
+
 
 router = APIRouter()
 
-import json
-from logic.request_sender import send_request
 
-response = send_request(3)
-
-# Выводим весь объект response в формате JSON
-print(json.dumps(response.json(), indent=4))
-
-
+print(TestStart)
 # все id и name тестов
 @router.get("/")
 def all_tests():
     tests = get_all_name()
     return [TestName(id=test[0], name_test=test[1]) for test in tests]
 
+print(all_tests())
 
 # описание теста
 @router.get("/details/{test_id}", response_model=TestUpdate)
@@ -65,21 +63,18 @@ def update_test(test_id: int, test_update: TestUpdate):
 
 
 
-"""
+
 
 
 @router.post("/tests/start/{test_id}")
 def start_test(test_id: int):
-    id передается в logic
-    в logic берется инфа из бд
-    тест запускается
-    сюда возвращается ответ и ответ записывается в бд
-    # respon
+    return send_request(test_id)
 
 
+"""
 
 @router.get("/tests/start_status")
-def get_user():
+def start_all_test():
     # запускаются тесты и возвращается какие прошли а какие нет
     
     

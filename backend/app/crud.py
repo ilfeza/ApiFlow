@@ -3,6 +3,8 @@ import json
 from backend.app.db import db_models
 
 
+# Для таблицы TESTS
+
 # Выбрать все тесты
 def get_all_tests():
     with db_models.session() as session:
@@ -60,3 +62,18 @@ def update_test_by_id(test_id, name_test=None, url=None, method=None, header=Non
             return test
         return None
 
+
+# Для таблицы TEST_RESULT
+
+# добавить резултат теста
+def create_result(id_test, status, execution_log):
+    with db_models.session() as session:
+        new_result = db_models.TestResult(
+            id_test=id_test,
+            status=status,
+            execution_log=execution_log
+        )
+
+        session.add(new_result)
+        session.commit()
+        return new_result
