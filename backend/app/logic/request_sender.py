@@ -1,11 +1,11 @@
 import requests
 
 
-from backend.app import crud
+from backend.app.crud import *
 
 
 def send_request(test_id: int):
-    description = crud.get_test_by_id(test_id)
+    description = get_test_by_id(test_id)
 
     result = start_test(description.url,
                         description.method,
@@ -43,5 +43,3 @@ def start_test(url, method='GET', data=None, headers=None):
     except requests.RequestException as e:
         print(f"Error sending request: {e}")
         return None
-
-print(send_request(3))
