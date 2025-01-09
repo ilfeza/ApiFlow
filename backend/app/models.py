@@ -20,6 +20,7 @@ class TestStart(BaseModel):
 class TestName(BaseModel):
     id: int
     name_test: str
+    method: str = "GET"
 
     class Config:
         orm_mode = True

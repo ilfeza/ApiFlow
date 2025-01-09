@@ -14,7 +14,7 @@ def get_all_tests():
 # Выбрать все id и name
 def get_all_name():
     with db_models.session() as session:
-        tests = session.query(db_models.Test.id, db_models.Test.name).all()
+        tests = session.query(db_models.Test.id, db_models.Test.name, db_models.Test.method).all()
         return tests
 
 
@@ -29,9 +29,9 @@ def get_test_by_id(test_id):
 
 
 # Создать тест по названию
-def create_test(name_test):
+def create_test(name_test, test_method):
     with db_models.session() as session:
-        new_test = db_models.Test(name=name_test)
+        new_test = db_models.Test(name=name_test, method=test_method)
         session.add(new_test)
         session.commit()
         return new_test

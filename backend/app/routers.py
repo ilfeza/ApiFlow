@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 
 from backend.app.crud import *
 import logging
@@ -6,18 +6,17 @@ import logging
 from backend.app.logic.request_sender import send_request
 from backend.app.models import TestStart, TestName, TestUpdate
 
-
 router = APIRouter()
 
-
 print(TestStart)
+
+
 # все id и name тестов
 @router.get("/")
 def all_tests():
     tests = get_all_name()
-    return [TestName(id=test[0], name_test=test[1]) for test in tests]
+    return [TestName(id=test[0], name_test=test[1], method=test[2]) for test in tests]
 
-print(all_tests())
 
 # описание теста
 @router.get("/details/{test_id}", response_model=TestUpdate)
@@ -32,13 +31,15 @@ def test_details(test_id: int):
         headers=description.header,
         body=description.body,
     )
+
+
 # новый тест
 @router.post("/new_test/{test_name}")
-def new_test(test_name: str):
-    create_test(test_name)
+def new_test(test_name: str, method: str = Query(...)):
+    create_test(test_name, method)
 
     tests = get_all_name()
-    return [TestName(id=test[0], name_test=test[1]) for test in tests]
+    return [TestName(id=test[0], name_test=test[1], method=test[2]) for test in tests]
 
 # тест обновляется и возвращается инфа о нем
 @router.patch("/{test_id}/update")
@@ -60,10 +61,6 @@ def update_test(test_id: int, test_update: TestUpdate):
         "headers": updated_test.header,
         "body": updated_test.body,
     }
-
-
-
-
 
 
 @router.post("/tests/start/{test_id}")
