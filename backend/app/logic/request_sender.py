@@ -1,6 +1,8 @@
 import requests
 
-from backend.app.crud import get_test_by_id, create_result
+import json
+
+from backend.app.crud import get_test_by_id, create_result, get_all_description
 
 
 def start_test(url, method='GET', data=None, headers=None):
@@ -52,3 +54,33 @@ def send_request(test_id: int):
     # Здесь возможно нужно просто вернуть результат или использовать его
     create_result(test_id, status_code, json_response)
     return result
+
+
+
+import json
+
+def run_all_tests():
+    # Получаем все тесты из базы данных
+    tests = get_all_description()
+
+    results = {}
+
+    for test in tests:
+        test_id, test_name, test_url, test_method, test_header, test_body = test
+
+        # Отправляем запрос для каждого теста
+        status_code, json_response = start_test(test_url, test_method, test_body, test_header)
+
+        # Добавляем результат в словарь
+        results[test_id] = {
+            'name': test_name,
+            'status': status_code
+        }
+        if status_code is None:
+            status_code = 0
+
+        # Сохраняем результат в базе данных
+        create_result(test_id, status_code, json_response)
+
+    # Возвращаем результаты как JSON-объект
+    return results  # Python автоматически сериализует в JSON, если требуется

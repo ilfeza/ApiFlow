@@ -1,10 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from backend.app.routers import router
+from fastapi.staticfiles import StaticFiles
 app = FastAPI(title="Приложение для тестирования API")
 
 app.include_router(router, tags=["Tests"])
-
+# app.mount("/front", StaticFiles(directory="front"), name="front")
 # Настройка CORS
 app.add_middleware(
     CORSMiddleware,

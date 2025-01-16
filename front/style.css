@@ -97,14 +97,16 @@ body {
 }
 
 .request-config {
-  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border-right: 1px solid var(--border);
-  overflow-y: auto;
+
   background: #1a1b26;
 }
 
 .response-panel {
-  padding: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   overflow-y: auto;
   background: #1a1b26;
 }
@@ -218,4 +220,192 @@ textarea {
 .modal-content button:nth-child(2) {
   background: #f00;
   color: white;
+}
+
+  .tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #000;
+  transition: color 0.3s;
+}
+
+.tab.active {
+  color: #bd93f9;
+
+  font-weight: bold;
+}
+
+.tab:not(.active) {
+  color: #aaa;
+}
+
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.hidden {
+    display: none;
+  }
+
+  .tab-content:not(.hidden) {
+    display: block;
+  }
+
+  textarea,
+  input,
+  select {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button#sendRequest {
+
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background: #e0e0e0;
+  margin-top: 10px;
+}
+
+.progress-bar-fill {
+  width: 0;
+  height: 100%;
+  background: #76c7c0;
+  transition: width 0.4s;
+}
+
+
+/* Стиль для индикатора загрузки */
+#loadingOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+#loadingOverlay .loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+}
+
+/* Стиль для отчета */
+#report {
+  display: none;
+  position: relative;
+
+}
+
+#report h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#closeReport {
+    position: absolute;
+    top: 15px;
+    right: 400px;
+    /* background-color: #ffffff; */
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+#testReportList .test-item {
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4px;
+  border: none; /* Убрана обводка */
+  border-radius: 6px; /* Квадратная форма с минимальным скруглением */
+
+  width: 40px; /* Размер квадрата */
+  height: 40px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+#testReportList .test-item:hover {
+  transform: scale(1.2);
+}
+
+#testReportList .test-item .status-box {
+  width: 100%; /* Заполняет весь квадрат */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px; /* Увеличенный шрифт */
+  font-weight: bold;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.status-success {
+  background-color: var(--accent2); /* Успешный статус */
+}
+
+.status-error {
+  background-color: var(--accent1); /* Ошибка */
+}
+
+.status-unknown {
+  background-color: var(--accent3); /* Неизвестный статус */
+}
+
+#testReportList .test-item .test-name {
+  position: absolute; /* Размещаем текст внутри квадрата */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0; /* Скрыт по умолчанию */
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#testReportList .test-item:hover .test-name {
+  opacity: 1; /* Показ текста при наведении */
+}
+
+#testReportList .test-item:hover .status-box {
+  opacity: 0; /* Скрываем статус при наведении */
+}
+#testReportList {
+  display: flex;
+  flex-wrap: wrap; /* Если строки переполняются, добавляются новые */
+  gap: 8px; /* Расстояние между элементами */
 }

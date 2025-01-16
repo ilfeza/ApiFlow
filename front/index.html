@@ -9,12 +9,29 @@
 <body>
   <div class="header">
     <button id="runAll">Run All Tests</button>
-    <button id="runSelected">Run Selected</button>
+    <button id="runSelected" disabled>Run Selected</button>
+    <button id="viewReport" style="display: none;">View Report</button>
     <span id="testStatus"></span>
     <div class="progress-bar">
       <div class="progress-bar-fill"></div>
     </div>
   </div>
+
+  <div id="loadingOverlay">
+    <div class="loading-text">Loading...</div>
+  </div>
+
+  <div id="report">
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <h2>Test Report</h2>
+        <button id="closeReport">✖</button>
+      </div>
+      <div id="testReportList"></div>
+    </div>
+
+
+
+
 
   <div class="main">
     <div class="requests-panel" id="requestsPanel">
@@ -27,61 +44,60 @@
     </div>
 
     <div class="request-config">
-      <h3>Request Configuration</h3>
+      <h3 id="test-title">Select a Test</h3>
 
-      <label>Method</label>
-      <select id="method">
-        <option>GET</option>
-        <option>POST</option>
-        <option>PUT</option>
-        <option>DELETE</option>
-      </select>
+      <p><span id="activeTabId" hidden></span></p>
 
-      <label>URL</label>
-      <input type="text" id="url" value="https://api.example.com/users">
 
-      <label>Headers</label>
-      <textarea id="headers">{
-  "Content-Type": "application/json",
-  "Authorization": "Bearer token123"
-}</textarea>
+      <div class="tabs">
+        <button class="tab active" data-tab="tab-method-url">Method & URL</button>
+        <button class="tab" data-tab="tab-headers">Headers</button>
+        <button class="tab" data-tab="tab-body">Body</button>
+      </div>
 
-      <label>Body</label>
-      <textarea id="body">{
-  "name": "John Doe",
-  "email": "john@example.com"
-}</textarea>
+      <div class="tab-content" id="tab-method-url">
+        <label>Method</label>
+        <select id="method">
+          <option>GET</option>
+          <option>POST</option>
+          <option>PUT</option>
+          <option>DELETE</option>
+        </select>
 
-      <button id="sendRequest">Send Request</button>
+        <label>URL</label>
+        <input type="text" id="url" value="">
+
+        <button id="saveTestInfo">Save test</button>
+        <button id="sendRequest">Send Request</button>
+        <button id="deleteTest">Delete test</button>
+      </div>
+
+      <div class="tab-content hidden" id="tab-headers">
+        <label>Headers</label>
+        <textarea id="headers">{}</textarea>
+      </div>
+
+      <div class="tab-content hidden" id="tab-body">
+        <label>Body</label>
+        <textarea id="body">{}</textarea>
+      </div>
     </div>
+
+
+
 
     <div class="response-panel">
       <h3>Response</h3>
 
-      <div class="status status-success">200 OK</div>
+      <div class="status status-success">Run the test</div>
 
       <div class="response-container">
-{
-  "success": true,
-  "data": {
-    "users": [
-      {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john@example.com"
-      },
-      {
-        "id": 2,
-        "name": "Jane Smith",
-        "email": "jane@example.com"
-      }
-    ]
-  }
-}
+
       </div>
     </div>
   </div>
 
   <script src="script.js"></script>
+  <script src="table.js"></script>
 </body>
 </html>

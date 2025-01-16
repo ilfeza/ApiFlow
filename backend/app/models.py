@@ -7,9 +7,16 @@ class TestUpdate(BaseModel):
     name: Optional[str] = None
     url: Optional[str] = None
     method: Optional[str] = None
-    headers: Optional[Dict[str, str]] = None
-    body: Optional[Dict[str, str]] = None
+    headers: Optional[Dict[str, str]] = {}
+    body: Optional[Dict[str, str]] = {}
 
+class TestDetails(BaseModel):
+    id: int
+    name_test: str
+    url: Optional[str] = None
+    method: str = "GET"
+    headers: Optional[Dict[str, str]] = {}
+    body: Optional[Dict[str, str]] = {}
 
 class TestStart(BaseModel):
     id: int
